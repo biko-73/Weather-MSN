@@ -1,17 +1,17 @@
 #!/bin/sh
-##############################################################################################################
+##########################################################################################################
 ##
 ## Script Purpose:
 ##		Download and install IPK/DEB (Py2/Py3)
 ##
 ## Command: wget https://raw.githubusercontent.com/biko-73/Weather-MSN/main/installer.sh -O - | /bin/sh
 ##
-##############################################################################################################
+##########################################################################################################
 
 
-##############################################################################################################
+##########################################################################################################
 # Plugin	... Enter Manually
-##############################################################################################################
+##########################################################################################################
 
 MY_IPK_PY2="enigma2-plugin-extensions-weather-msn_1.3-r3_PY2_3_mod_all.ipk"
 MY_IPK_PY3="enigma2-plugin-extensions-weather-msn_1.3-r3_PY2_3_mod_all.ipk"
@@ -21,9 +21,9 @@ MY_DEB_PY3="enigma2-plugin-extensions-weather-msn_1.3-r3_PY2_3_mod_all.deb"
 
 PACKAGE_DIR='Weather-MSN/main'
 
-##############################################################################################################
+###########################################################################################################
 # Auto ... Do not change
-##############################################################################################################
+###########################################################################################################
 MY_MAIN_URL="https://raw.githubusercontent.com/biko-73/"
 
 PYTHON_VERSION=$(python -c 'import sys; print(sys.version_info[0])')
@@ -32,20 +32,19 @@ PYTHON_VERSION=$(python -c 'import sys; print(sys.version_info[0])')
 if which dpkg > /dev/null 2>&1; then
 	if [ "$PYTHON_VERSION" -eq "2" ]; then
 		MY_FILE=$MY_DEB_PY2
-	else echo "333";
+	else
 		MY_FILE=$MY_DEB_PY3
-	fi;
+	fi
 	MY_URL=$MY_MAIN_URL$PACKAGE_DIR'/'$MY_FILE
 else
 	if [ "$PYTHON_VERSION" -eq "2" ]; then
 		MY_FILE=$MY_IPK_PY2
-	else echo "333";
+	else
 		MY_FILE=$MY_IPK_PY3
-	fi;
+	fi
 	MY_URL=$MY_MAIN_URL$PACKAGE_DIR'/'$MY_FILE
 fi
 MY_TMP_FILE="/tmp/"$MY_FILE
-
 
 echo ''
 echo '************************************************************'
@@ -90,7 +89,7 @@ if [ -f $MY_TMP_FILE ]; then
 	if [ $MY_RESULT -eq 0 ]; then
 		echo "   >>>>   SUCCESSFULLY INSTALLED   <<<<"
 		echo ''
-		echo "   >>>>         RESTARING         <<<<"
+		echo "   >>>>         RESTARTING         <<<<"
 		if which systemctl > /dev/null 2>&1; then
 			sleep 2; systemctl restart enigma2
 		else
@@ -98,7 +97,7 @@ if [ -f $MY_TMP_FILE ]; then
 		fi
 	else
 		echo "   >>>>   INSTALLATION FAILED !   <<<<"
-	fi;
+	fi
 	echo ''
 	echo '**************************************************'
 	echo '**                   FINISHED                   **'
